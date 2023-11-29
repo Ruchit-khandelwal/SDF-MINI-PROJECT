@@ -1,0 +1,1162 @@
+#include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
+// program to display function you want
+// structure for stock item
+ struct StockItem
+{
+ // structure to initialize
+ // iteam detail used in program
+int itemID;
+char itemName[50];
+  int quantity;
+  // double to store large value
+double price;
+double rate;
+// Add a new field for rate
+};
+// function for stock detail
+struct StockItem stockDatabase[100];
+ int itemCount = 0;
+void addItem()
+{
+
+if (itemCount < 100)
+    {
+
+struct StockItem newItem;
+// CODE TO ENTER YOUR PRODUCT(ITEM) DETAIL
+newItem.itemID = itemCount + 1;
+// enter the item name
+  printf("Enter item name: ");
+scanf("%s", newItem.itemName);
+// enter the item quantity
+printf("Enter quantity: ");
+ scanf("%d", &newItem.quantity);
+ // enter the  item price
+ // only enter integer like 1000 not 1000kg
+printf("Enter price: ");
+scanf("%lf", &newItem.price);
+// enter the rate per kg
+
+printf("Enter rate per piece or per kg: ");
+ scanf("%lf", &newItem.rate);
+
+stockDatabase[itemCount] = newItem;
+itemCount++;
+
+printf("Item added successfully!");
+  printf("\n");
+
+}
+else
+{
+printf("Stock database is full. Cannot add more items.");
+}
+printf("\n");
+}
+// program to enter your task
+void displayStock()
+ {
+ // add stock detail
+printf("Stock Items:");
+printf("\n");
+// enter youe stock id you made in your systen
+printf("ID");
+printf("\t");
+// enter your stock name(product)
+printf("name");
+printf("\t");
+// enter the quantity
+// keep in mind plese do not enter quantity with character
+// like for 1000kg enter only 1000
+printf("quantity");
+printf("\t");
+// enter the price you want
+// it may be float type and integers
+printf("price");
+ printf("\t");
+ // enter your rate
+ // it also may be float type and integers
+printf("rate");
+printf("\n");
+// program enter number iteam you
+// want to store
+int i;
+// number of item increse as you want
+for (i = 0; i < itemCount; i++)
+    {
+// program to call the  structure
+struct StockItem item = stockDatabase[i];
+// program print the detail
+// to print iteam ID
+printf("%d",item.itemID);
+printf("\t");
+// to print item name
+printf("%s",item.itemName);
+printf("\t");
+printf("\t");
+// program to print item quantity
+printf("%d",item.quantity);
+printf("\t");
+printf("\t");
+// to print price
+printf("%.2f",item.price);
+printf("\t");
+printf("\t");
+// to print rate
+printf("%.2f",item.rate);
+printf("\n");
+
+}
+}
+int StockMgmt()
+ {
+printf("=====================================================\n");
+printf("         WELCOME TO STOCK MAGMENT SYSTEM              \n");
+printf("=====================================================\n");
+
+int choice;
+while (1)
+    {
+ printf("\n");
+printf("Stock Management System Menu:");
+printf("\n");
+// for add iteam
+printf("1. Add Item ");
+printf("\n");
+// to display stock
+printf("2. Display Stock");
+printf("\n");
+// to exit the program
+printf("3. Exit");
+printf("\n");
+printf("Enter your choice: ");
+scanf("%d", &choice);
+switch (choice)
+{
+case 1:
+// press 1 to add item
+addItem();
+break;
+case 2:
+// press 2 to display stock
+displayStock();
+break;
+case 3:
+// press 3 to exit the program
+printf("Exiting Stock Management System. ");
+printf("\n");
+return 0;
+default:
+// other than 1,2,3 not valid
+printf("Invalid choice. Please try again.");
+printf("\n");
+}
+}
+return 0;
+}
+
+
+
+
+
+
+// Define the structure for an employee record
+struct Employee
+ {
+    int id;
+ // Employee ID
+    char name[50];
+// Employee name
+    char designation[50];
+ // Employee designation
+    float salary;
+// Employee salary
+    char address[100];
+ // Employee address
+    char phoneNumber[15];
+ // Employee phone number
+};
+
+// Function to add a new employee
+void addEmployee(struct Employee *employee, int *count)
+ {
+    printf("Enter employee ID: ");
+ // Prompt for employee ID
+    scanf("%d", &employee[*count].id);
+// Read employee ID input
+
+    printf("Enter employee name: ");
+ // Prompt for employee name
+    scanf("%s", employee[*count].name);
+ // Read employee name input
+
+    printf("Enter employee designation: ");
+ // Prompt for employee designation
+    scanf("%s", employee[*count].designation);
+// Read employee designation input
+
+    printf("Enter employee salary: ");
+ // Prompt for employee salary
+    scanf("%f", &employee[*count].salary);
+// Read employee salary input
+
+    printf("Enter employee address: ");
+ // Prompt for employee address
+    scanf("%s", employee[*count].address);
+ // Read employee address input
+
+    printf("Enter employee phone number: ");
+ // Prompt for employee phone number
+    scanf("%s", employee[*count].phoneNumber);
+// Read employee phone number input
+
+    (*count)++;
+// Increment the employee count
+}
+
+// Function to display all employees
+void displayEmployees(struct Employee *employee, int count) {
+    printf("Employee Records:\n");
+
+    // Loop through each employee and print their details
+    for (int i = 0; i < count; i++) {
+        printf("ID: %d\n", employee[i].id);
+// Print employee ID
+        printf("Name: %s\n", employee[i].name);
+// Print employee name
+        printf("Designation: %s\n", employee[i].designation);
+ // Print employee designation
+        printf("Salary: %.2f\n", employee[i].salary);
+// Print employee salary
+        printf("Address: %s\n", employee[i].address);
+ // Print employee address
+        printf("Phone Number: %s\n", employee[i].phoneNumber);
+ // Print employee phone number
+        printf("\n");
+    }
+}
+
+// Function to search for an employee by ID
+void searchEmployee(struct Employee *employee, int count, int searchID) {
+    // Loop through each employee to find the one with the specified ID
+    for (int i = 0; i < count; i++) {
+        if (employee[i].id == searchID) {
+            printf("Employee found:\n");
+            printf("ID: %d\n", employee[i].id);
+ // Print employee ID
+            printf("Name: %s\n", employee[i].name);
+// Print employee name
+            printf("Designation: %s\n", employee[i].designation);
+ // Print employee designation
+            printf("Salary: %.2f\n", employee[i].salary);
+ // Print employee salary
+            printf("Address: %s\n", employee[i].address);
+ // Print employee address
+            printf("Phone Number: %s\n", employee[i].phoneNumber);
+// Print employee phone number
+            return;
+ // Exit the function once the employee is found
+        }
+    }
+
+    // Print a message if the employee with the specified ID is not found
+    printf("Employee with ID %d not found.\n", searchID);
+}
+
+// Main function
+int EmployeeMgmt()
+ {
+    struct Employee employees[100];
+ // Maximum 100 employees
+    int employeeCount = 0;
+ // Initialize employee count
+    int choice, searchID;
+ // Variables for user's choice and search ID
+// Display welcome message
+    printf("=====================================================\n");
+    printf("    WELCOME TO EMPLOYEE MANAGEMENT SYSTEM\n");
+    printf("=====================================================\n");
+
+
+    // Main menu loop
+    while (1) {
+        printf("\nEmployee Management System\n");
+        printf("1. Add Employee\n");
+        printf("2. Display Employees\n");
+        printf("3. Search Employee by ID\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+ // Get user's choice
+
+        // Switch based on the user's choice
+        switch (choice)
+ {
+            case 1:
+                addEmployee(employees, &employeeCount);
+// Call function to add an employee
+                break;
+            case 2:
+                displayEmployees(employees, employeeCount);
+ // Call function to display all employees
+                break;
+            case 3:
+                printf("Enter employee ID to search: ");
+                scanf("%d", &searchID);
+ // Get employee ID for search
+                searchEmployee(employees, employeeCount, searchID);
+ // Call function to search for an employee by ID
+                break;
+            case 4:
+                printf("Exiting the program.\n");
+                return(0);
+// Exit the program
+            default:
+                printf("Invalid choice. Please try again.\n");
+// Print an error message for an invalid choice
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+struct Item
+{
+char name[50];
+float cost;
+float price;
+};
+// Function to calculate profit margin as a percentage
+float calculateProfitMargin(float cost, float price)
+{
+return ((price - cost) / cost) * 100.0;
+// return profit as using followinf formula
+// ((selling price-cost price)/cost price)*100
+}
+int ProfitMgmt()
+{
+
+printf("=====================================================\n");
+printf("     WELCOME TO PROFIT MANGMENT SYSTEM              \n");
+printf("=====================================================\n");
+
+
+int numItems;
+// enter the number of items you want
+printf("Enter the number of items: ");
+scanf("%d", &numItems);
+// make a structure for program
+struct Item items[numItems];
+// loop for to number of items we you want
+for (int i = 0; i < numItems; i++)
+{
+// enter the name of items
+// name must be in character
+// like xyz not xyz123
+printf("Enter the name of item %d: ", i + 1);
+scanf("%s", items[i].name);
+// enter the cost of item in integers
+// only integers is allow not character
+// like 120 not 120 per
+printf("Enter the cost of item %d: ", i + 1);
+scanf("%f", &items[i].cost);
+// enter the selling price of item in integers
+// only integers is allow not character
+// like 120 not 120 per
+printf("Enter the selling price of item %d: ", i + 1);
+scanf("%f", &items[i].price);
+}
+printf("\n");
+// show the name items
+printf("item");
+printf("\t");
+// show the cost of items
+printf("cost");
+// \t is used for space
+printf("\t");
+printf("\t");
+// show the price of items
+printf("price");
+printf("\t");
+printf("\t");
+// show the profit margin
+printf(" profit margin");
+printf("\n");
+
+for (int i = 0; i < numItems; i++)
+{
+float profitMargin = calculateProfitMargin(items[i].cost, items[i].price);
+// print the item name
+printf("%s",items[i].name);
+printf("\t");
+printf("\t");
+// print the cost of items
+printf("%.2f",items[i].cost);
+// print the space
+printf("\t");
+printf("\t");
+// print the item price
+printf("%.2f",items[i].price);
+printf("\t");
+printf("\t");
+// print the net profit im each product
+printf("%.2f",profitMargin);
+printf("\n");
+}
+return 0;
+}
+
+
+
+
+#define MAX_CUSTOMERS 100
+#define MAX_DEALS 100
+// structure to initialization basic informatin of customer
+// this structure contain only personal information
+struct Customer
+{
+int id;
+char name[50];
+char email[100];
+long long phone;
+};
+// structure contain business information
+struct Deal
+{
+int customerId;
+float amount;
+char description[100];
+};
+// function to store the personal informaton and basic information
+// of customer
+void addCustomer(struct Customer customers[], int *customerCount)
+{
+    if (*customerCount < MAX_CUSTOMERS)
+{
+struct Customer newCustomer;
+// to store customer ID
+// it must be in integers like 12345 not 123ABC
+printf("Enter customer ID: ");
+scanf("%d", &newCustomer.id);
+// to store the customer name
+printf("Enter customer name: ");
+scanf("%s", newCustomer.name);
+// to store the customer e mail ID
+printf("Enter customer email: ");
+scanf("%s", newCustomer.email);
+// to store the customer phone number
+printf("Enter customer phone: ");
+scanf("%lld",& newCustomer.phone);
+// to add number of customer you want
+customers[(*customerCount)++] = newCustomer;
+printf("Customer added successfully.");
+printf("\n");
+}
+else
+{
+printf("Maximum customer limit reached.");
+printf("\n");
+}
+}
+// function to display the detail of customer
+void displayCustomers(struct Customer customers[],
+int customerCount) {
+    printf("Customer Records: ");
+    printf("\n");
+// to print coustomer detail
+printf("ID");
+printf("\t");
+printf("\t");
+
+printf("name");
+printf("\t");
+printf("\t");
+
+printf("email");
+printf("\t");
+printf("\t");
+
+printf("phone");
+printf("\n");
+
+// loop to store number of customer you want
+for (int i = 0; i < customerCount; i++)
+{
+
+// to print customer business infromation
+printf("%d",customers[i].id);
+printf("\t");
+printf("\t");
+
+printf("%s",customers[i].name);
+printf("\t");
+printf("\t");
+
+printf("%s",customers[i].email);
+printf("\t");
+printf("\t");
+
+printf("%lld",customers[i].phone);
+printf("\n");
+}
+}
+// function to store business information
+void addDeal(struct Deal deals[], struct Customer customers[], int *dealCount, int customerCount)
+{
+  // loop to store number of deal they want
+  // MAX_DEALS is very large value
+if (*dealCount < MAX_DEALS)
+{
+// structure to store business information given by user
+struct Deal newDeal;
+int customerId;
+printf("Enter customer ID for the deal: ");
+scanf("%d", &customerId);
+int customerIndex = -1;
+// loop to store number of customber information they want
+for (int i = 0; i < customerCount; i++)
+{
+if (customers[i].id == customerId)
+{
+customerIndex = i;
+break;
+}
+}
+// to dispay the customber information
+if (customerIndex != -1)
+{
+    // to store all deal  information
+printf("Enter deal amount: ");
+scanf("%f", &newDeal.amount);
+
+printf("Enter deal description: ");
+scanf("%s", newDeal.description);
+
+newDeal.customerId = customerId;
+deals[(*dealCount)++] = newDeal;
+
+printf("Deal added successfully.");
+printf("\n");
+
+}
+else
+{
+printf("Customer with ID %d not found.", customerId);
+printf("\n");
+}
+}
+else
+{
+printf("Maximum deal limit reached.");
+printf("\n");
+}
+}
+void displayDeals(struct Deal deals[], int dealCount)
+{
+printf("Deal Records:");
+printf("\n");
+
+printf("customer ID");
+printf("\t");
+printf("Amount");
+printf("\t");
+printf("Description");
+printf("\n");
+for (int i = 0; i < dealCount; i++)
+{
+
+
+printf("%d",deals[i].customerId);
+printf("\t");
+printf("%.2f",deals[i].amount);
+printf("\t");
+printf("%s",deals[i].description);
+printf("\n");
+}
+}
+int CustomerMgmt()
+{
+
+printf("=====================================================\n");
+printf("     WELCOME TO customer MANGMENT SYSTEM              \n");
+printf("=====================================================\n");
+
+struct Customer customers[MAX_CUSTOMERS];
+struct Deal deals[MAX_DEALS];
+int customerCount = 0;
+int dealCount = 0;
+int choice;
+while (1)
+{
+
+ printf("\n");
+printf("Business Management System");
+printf("\n");
+
+printf("1. Add Customer");
+printf("\n");
+
+printf("2. Display Customers");
+printf("\n");
+printf("3. Add Deal");
+printf("\n");
+
+printf("4. Display Deals");
+printf("\n");
+
+printf("5. Exit");
+printf("\n");
+
+printf("Enter your choice: ");
+scanf("%d", &choice);
+//  to perform the task you want
+switch (choice)
+{
+case 1:
+addCustomer(customers, &customerCount);
+break;
+case 2:
+displayCustomers(customers, customerCount);
+break;
+case 3:
+addDeal(deals, customers, &dealCount, customerCount);
+break;
+case 4:
+displayDeals(deals, dealCount);
+break;
+case 5:
+printf("Exiting the program.");
+printf("\n");
+return 0;
+default:
+printf("Invalid choice. Please try again.");
+printf("\n");
+}
+}
+return 0;
+}
+
+
+
+
+
+// Define the maximum number of expenses
+#define MAX_EXPENSES 100
+
+// Structure to represent an expense record
+struct Expense {
+    char category[50];
+    // Category of the expense
+    float amount;
+    // Amount of the expense
+    char date[15];
+    // Date of the expense (MM/DD/YYYY)
+    char note[200];
+      // Note for the expense
+    char paymentMethod[20];
+  // Payment method (e.g., cash, credit card)
+    char expenseType[30];
+   // Type of the expense (e.g., operating, maintenance)
+};
+
+// Function to add a new expense record
+void addExpense(struct Expense expenses[], int *expenseCount) {
+    // Check if the maximum number of expenses has not been reached
+    if (*expenseCount < MAX_EXPENSES) {
+        struct Expense newExpense;
+
+        // Enter details for the new expense
+        printf("Enter the category of the expense: ");
+        scanf("%s", newExpense.category);
+
+        printf("Enter the amount of the expense: ");
+        scanf("%f", &newExpense.amount);
+
+        printf("Enter the date of the expense (MM/DD/YYYY): ");
+        scanf("%s", newExpense.date);
+
+        printf("Enter a note for the expense: ");
+        scanf(" %[^\n]s", newExpense.note);
+
+        printf("Enter the payment method (e.g., cash, credit card): ");
+        scanf("%s", newExpense.paymentMethod);
+
+        printf("Enter the expense type (e.g., operating, maintenance): ");
+        scanf("%s", newExpense.expenseType);
+
+        // Add the new expense to the array
+        expenses[(*expenseCount)++] = newExpense;
+
+        printf("Expense record added successfully.\n");
+    } else {
+        // Print a message if the maximum limit is reached
+        printf("Maximum expense record limit reached.\n");
+    }
+}
+
+// Function to display all expense records
+void displayExpenses(struct Expense expenses[], int expenseCount) {
+    // Print header for the expense records
+    printf("Category\tAmount\tDate\t\tNote\t\tPayment Method\tExpense Type\n");
+
+    // Loop through each expense record and print its details
+    for (int i = 0; i < expenseCount; i++) {
+        printf("%s\t%.2f\t%s\t%s\t%s\t%s\n", expenses[i].category,
+               expenses[i].amount, expenses[i].date, expenses[i].note,
+               expenses[i].paymentMethod, expenses[i].expenseType);
+    }
+}
+
+// Main function
+int ExpenseMgmt() {
+    // Array to store expense records
+    struct Expense expenses[MAX_EXPENSES];
+
+    // Variable to keep track of the number of expense records
+    int expenseCount = 0;
+
+    // User's choice
+    int choice;
+
+    // Display welcome message
+    printf("=====================================================\n");
+    printf("    WELCOME TO EXPENSE MANAGEMENT SYSTEM\n");
+    printf("=====================================================\n");
+
+    // Main menu loop
+    while (1) {
+        // Display main menu options
+        printf("\nExpense Management System\n");
+        printf("1. Add Expense Record\n");
+        printf("2. Display Expense Records\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+
+        // Get user's choice
+        scanf("%d", &choice);
+
+        // Switch based on the user's choice
+        switch (choice) {
+            case 1:
+                // Call function to add an expense record
+                addExpense(expenses, &expenseCount);
+                break;
+            case 2:
+                // Call function to display all expense records
+                displayExpenses(expenses, expenseCount);
+                break;
+            case 3:
+                // Exit the program
+                printf("Exiting the program.\n");
+                return 0;
+            default:
+                // Print an error message for an invalid choice
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+
+
+
+// Define the maximum number of production records
+#define MAX_PRODUCTION_RECORDS 100
+
+// Structure to represent a production record
+struct ProductionRecord {
+    char item[50];
+    int quantity;
+    char date[20];
+    char productionLine[50];
+};
+
+// Function to add a new production record
+void addProductionRecord(struct ProductionRecord records[], int *recordCount) {
+    // Check if the maximum number of production records has not been reached
+    if (*recordCount < MAX_PRODUCTION_RECORDS) {
+        struct ProductionRecord newRecord;
+
+        // Enter details for the new production record
+        printf("Enter the item produced: "); // Prompt for item
+        scanf("%s", newRecord.item); // Read item input
+
+        printf("Enter the quantity produced: "); // Prompt for quantity
+        scanf("%d", &newRecord.quantity); // Read quantity input
+
+        printf("Enter the date of production (MM/DD/YYYY): "); // Prompt for date
+        scanf("%s", newRecord.date); // Read date input
+
+        printf("Enter the production line: "); // Prompt for production line
+        scanf("%s", newRecord.productionLine); // Read production line input
+
+        // Add the new production record to the array
+        records[(*recordCount)++] = newRecord;
+
+        printf("Production record added successfully.\n");
+    } else {
+        // Print a message if the maximum limit is reached
+        printf("Maximum production record limit reached.\n");
+    }
+}
+
+// Function to display all production records
+void displayProductionRecords(struct ProductionRecord records[], int recordCount) {
+    printf("Production Records for the Month:\n");
+    printf("Item\tQuantity\tDate\t\tProduction Line\n");
+
+    // Loop through each production record and print its details
+    for (int i = 0; i < recordCount; i++) {
+        printf("%s\t%d\t%s\t%s\n",
+               records[i].item, records[i].quantity, records[i].date,
+               records[i].productionLine);
+    }
+}
+
+// Main function
+int ProductMgmt() {
+    // Array to store production records
+    struct ProductionRecord productionRecords[MAX_PRODUCTION_RECORDS];
+
+    // Variable to keep track of the number of production records
+    int recordCount = 0;
+
+    // User's choice
+    int choice;
+
+    // Display welcome message
+    printf("=====================================================\n"); // Welcome message line 1
+    printf("    WELCOME TO PRODUCT MANAGEMENT SYSTEM\n"); // Welcome message line 2
+    printf("=====================================================\n"); // Welcome message line 3
+
+    // Main menu loop
+    while (1) {
+        // Display main menu options
+        printf("\nProduction Record Management\n"); // Main menu prompt
+        printf("1. Add Production Record\n"); // Option 1
+        printf("2. Display Production Records\n"); // Option 2
+        printf("3. Exit\n"); // Option 3
+        printf("Enter your choice: "); // Prompt for user's choice
+
+        // Get user's choice
+        scanf("%d", &choice);
+
+        // Switch based on the user's choice
+        switch (choice) {
+            case 1:
+                // Call function to add a production record
+                addProductionRecord(productionRecords, &recordCount);
+                break;
+            case 2:
+                // Call function to display all production records
+                displayProductionRecords(productionRecords, recordCount);
+                break;
+            case 3:
+                // Exit the program
+                printf("Exiting the program.\n");
+                return 0;
+            default:
+                // Print an error message for an invalid choice
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+#define MAX_MONTHS 12
+#define MAX_ITEMS 5
+
+// Function to input monthly data for items processed and sales
+void inputMonthlyData(int itemsProcessed[], float sales[][MAX_ITEMS], int month, int numItems)
+ {
+    printf("\nEnter data for Month %d:\n", month + 1);
+    for (int item = 0; item < numItems; item++)
+{
+        printf("Enter the number of Item %d processed: ", item + 1);
+        scanf("%d", &itemsProcessed[item]);
+ // Input the number of items processed
+        printf("Enter sales for Item %d: $", item + 1);
+        scanf("%f", &sales[month][item]);
+ // Input the sales for the item
+    }
+}
+
+// Function to display the monthly chart for items processed and sales
+void displayMonthlyChart(int itemsProcessed[], float sales[][MAX_ITEMS], int month, int numItems)
+ {
+    printf("\nChart for Month %d:\nItem\tProcessed\tSales\n", month + 1);
+    for (int item = 0; item < numItems; item++)
+        printf("%d\t%d\t\t$%.2f\n", item + 1, itemsProcessed[item], sales[month][item]);
+  // Display chart for the month
+}
+
+// Function to display the overall summary of total processed and total sales
+void displayOverallSummary(int itemsProcessed[], float sales[][MAX_ITEMS], int numMonths, int numItems)
+{
+    printf("\nOverall Summary:\nItem\tTotal Processed\tTotal Sales\n");
+    for (int item = 0; item < numItems; item++)
+{
+        int totalProcessed = 0;
+        float totalSales = 0;
+        for (int month = 0; month < numMonths; month++) {
+            totalProcessed += itemsProcessed[item];
+// Calculate total processed for the item
+            totalSales += sales[month][item];
+ // Calculate total sales for the item
+        }
+        printf("%d\t%d\t\t$%.2f\n", item + 1, totalProcessed, totalSales);  // Display overall summary
+    }
+}
+
+int ProcessMgmt()
+{
+    // Welcome message
+    printf("=====================================================\n");
+    printf("     WELCOME TO PRODUCT PROCESSING MANAGEMENT SYSTEM \n");
+    printf("=====================================================\n");
+
+    // Input number of months and items
+    int numMonths, numItems;
+    printf("Enter the number of months: ");
+    scanf("%d", &numMonths);
+  // Input number of months
+    printf("Enter the number of items: ");
+    scanf("%d", &numItems);
+ // Input number of items
+    if (numMonths <= 0 || numMonths > MAX_MONTHS || numItems <= 0
+|| numItems > MAX_ITEMS) {
+        printf("Invalid input. Please enter valid values for months and items.\n");
+        return 1;
+    }
+
+    // Arrays to store data for items processed and sales
+    int itemsProcessed[MAX_ITEMS];
+    float sales[MAX_MONTHS][MAX_ITEMS];
+
+    // Loop through each month, input data, and display the monthly chart
+    for (int month = 0; month < numMonths; month++) {
+        inputMonthlyData(itemsProcessed, sales, month, numItems);
+        displayMonthlyChart(itemsProcessed, sales, month, numItems);
+    }
+
+    // Display the overall summary
+    displayOverallSummary(itemsProcessed, sales, numMonths, numItems);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// Structure to represent a product
+struct Product {
+    int productID;
+    char productName[50];
+    int quantity;
+    float cost;
+    float price;
+};
+
+// Structure to represent a supplier
+struct Supplier {
+    int supplierID;
+    char supplierName[50];
+    char contactNumber[15];
+};
+
+// Function to add a new product to inventory
+void addProduct(struct Product inventory[], int *productCount) {
+    if (*productCount < 100) {
+        struct Product newProduct;
+        newProduct.productID = *productCount + 1;
+
+        printf("Enter product name: ");
+        scanf("%s", newProduct.productName);
+
+        printf("Enter quantity: ");
+        scanf("%d", &newProduct.quantity);
+
+        printf("Enter cost: ");
+        scanf("%f", &newProduct.cost);
+
+        printf("Enter price: ");
+        scanf("%f", &newProduct.price);
+
+        inventory[*productCount] = newProduct;
+        (*productCount)++;
+
+        printf("Product added successfully!\n");
+    } else {
+        printf("Inventory is full. Cannot add more products.\n");
+    }
+    printf("\n");
+}
+
+// Function to display the current inventory
+void displayInventory(struct Product inventory[], int productCount) {
+    printf("Inventory:\n");
+    printf("ID\tName\t\tQuantity\tCost\t\tPrice\n");
+
+    for (int i = 0; i < productCount; i++) {
+        struct Product product = inventory[i];
+        printf("%d\t%s\t\t%d\t\t%.2f\t\t%.2f\n", product.productID, product.productName, product.quantity, product.cost, product.price);
+    }
+}
+
+// Function to add a new supplier
+void addSupplier(struct Supplier suppliers[], int *supplierCount) {
+    if (*supplierCount < 50) {
+        struct Supplier newSupplier;
+        newSupplier.supplierID = *supplierCount + 1;
+
+        printf("Enter supplier name: ");
+        scanf("%s", newSupplier.supplierName);
+
+        printf("Enter contact number: ");
+        scanf("%s", newSupplier.contactNumber);
+
+        suppliers[*supplierCount] = newSupplier;
+        (*supplierCount)++;
+
+        printf("Supplier added successfully!\n");
+    } else {
+        printf("Supplier list is full. Cannot add more suppliers.\n");
+    }
+    printf("\n");
+}
+
+// Function to display the list of suppliers
+void displaySuppliers(struct Supplier suppliers[], int supplierCount) {
+    printf("Suppliers:\n");
+    printf("ID\tName\t\tContact Number\n");
+
+    for (int i = 0; i < supplierCount; i++) {
+        struct Supplier supplier = suppliers[i];
+        printf("%d\t%s\t\t%s\n", supplier.supplierID, supplier.supplierName, supplier.contactNumber);
+    }
+}
+
+int ChainMgmt() {
+    struct Product inventory[100];
+    int productCount = 0;
+
+    struct Supplier suppliers[50];
+    int supplierCount = 0;
+
+    int choice;
+    while (1) {
+        printf("\nSupply Chain Management System Menu:\n");
+        printf("1. Add Product\n");
+        printf("2. Display Inventory\n");
+        printf("3. Add Supplier\n");
+        printf("4. Display Suppliers\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addProduct(inventory, &productCount);
+                break;
+            case 2:
+                displayInventory(inventory, productCount);
+                break;
+            case 3:
+                addSupplier(suppliers, &supplierCount);
+                break;
+            case 4:
+                displaySuppliers(suppliers, supplierCount);
+                break;
+            case 5:
+                printf("Exiting Supply Chain Management System.\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+int main()
+{
+    int choice;
+
+    // Display welcome message
+    printf("=====================================================\n");
+    printf("            WELCOME TO SAARTHI:YOUR ACCOUNTING MATE            \n");
+    printf("=====================================================\n");
+
+    // Main menu loop
+    while (1) {
+        printf("\nManagement System Menu:\n");
+        printf("1. Stock Management\n");
+        printf("2. Employee Management\n");
+        printf("3. Customer Management\n");
+        printf("4. Profit Management\n");
+        printf("5. Product Management\n");
+        printf("6. Supply Chain Management\n");
+        printf("7. Expense Management\n");
+        printf("8. Production Management\n");
+        printf("9. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                StockMgmt();
+                break;
+            case 2:
+                EmployeeMgmt();
+                break;
+            case 3:
+                CustomerMgmt();
+                break;
+            case 4:
+                ProfitMgmt();
+                break;
+            case 5:
+                ProductMgmt();
+                break;
+            case 6:
+                ChainMgmt();
+                break;
+            case 7:
+                ProcessMgmt();
+                break;
+            case 8:
+                ExpenseMgmt();
+                break;
+            case 9:
+                printf("Exiting the program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
